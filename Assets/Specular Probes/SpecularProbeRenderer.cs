@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+
 [ExecuteInEditMode]
 [RequireComponent(typeof(ReflectionProbe))]
 public class SpecularProbeRenderer : MonoBehaviour {
@@ -8,6 +10,9 @@ public class SpecularProbeRenderer : MonoBehaviour {
 #if UNITY_EDITOR
     [Tooltip("Will only draw specular highlights for lights in this radius")]
     public float radius = 100;
+    [Range(-12f, 12f)]
+    [Tooltip("Makes cubemap more blurry, making highlights more drastic.")]
+    public float mipBias = 0f;
 
     private ReflectionProbe probe;
 
@@ -63,12 +68,32 @@ public class SpecularProbeRenderer : MonoBehaviour {
         string path = UnityEditor.AssetDatabase.GetAssetPath(probe.bakedTexture);
         UnityEditor.Lightmapping.BakeReflectionProbe(probe, path);
 
+        // Apply MipBias to the cubemap
+        ApplyMipBias();
+
         // remove all created lights, cleaning up scene
         for (int i = 0; i < closeLights.Count; i++)
         {
             closeLights[i].Hide();
         }
     }
+
+    [ContextMenu("Apply MipMap Bias")]
+    public void ApplyMipBias()
+    {
+        if (probe == null)
+            probe = GetComponent<ReflectionProbe>();
+
+        string assetPath = UnityEditor.AssetDatabase.GetAssetPath(probe.bakedTexture);
+        TextureImporter importer = AssetImporter.GetAtPath(assetPath) as TextureImporter;
+        if (importer != null)
+        {
+            importer.mipMapBias = mipBias;
+            importer.SaveAndReimport();
+        }
+    }
+
+
 
     [ContextMenu("Render All")]
     public void RenderAll()
@@ -78,6 +103,8 @@ public class SpecularProbeRenderer : MonoBehaviour {
             r.Render();
         }
     }
+
+
 
 #endif
 }

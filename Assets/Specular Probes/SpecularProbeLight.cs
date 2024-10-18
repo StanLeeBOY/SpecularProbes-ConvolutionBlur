@@ -101,5 +101,17 @@ public class SpecularProbeLight : MonoBehaviour {
     {
         return light.intensity * intensityMultiplier * intensityConstant;
     }
-#endif
+    [ContextMenu("Preview Specular Light")]
+    public void PreviewSpecularLight()
+    {
+        Draw();
+        StartCoroutine(DestroyPreviewWhenDeselected());
     }
+
+    private IEnumerator DestroyPreviewWhenDeselected()
+    {
+        yield return new WaitUntil(() => !UnityEditor.Selection.Contains(gameObject));
+        Hide();
+    }
+#endif
+}
