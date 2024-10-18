@@ -38,8 +38,8 @@ Good question! It's a really simple trick. When about to render reflection probe
 ## How can I bring this effect further?
 Good question! The way that this fork does this is by adding Convolution. This works by changing the MipMap Bias of the Cubemap rendered in the reflection probe, effectively making it more blurry which overblows the specular highlight. This gives a bloom effect on top of the original ultra bright pixels!
 
-##With Convolution Blur
+## With Convolution Blur
 ![CaptureConvolutedProbe](/images/!CaptureConvolutedProbe.JPG)
 
-##Without Convolution Blur
+## Without Convolution Blur
 ![CaptureNonConvolutedProbe](/images/!CaptureNonConvolutedProbe.JPG)
