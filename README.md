@@ -36,7 +36,9 @@ And that's all you need to know! These components are automatically cleaned up w
 Good question! It's a really simple trick. When about to render reflection probes, I spawn small brightly colored spheres around lights. That way, they get rendered into the probe as, like I mentioned before, small clusters of ultra bright pixels. I didn't expect this to work as well as it does, but it's almost indistinguishable from real specular highlights!
 
 ## How can I bring this effect further?
-Good question! The way that this fork does this is by adding Convolution. This works by changing the MipMap Bias of the Cubemap rendered in the reflection probe, effectively making it more blurry which overblows the specular highlight. This gives a bloom effect on top of the original ultra bright pixels!
+Good question! The way that this fork does this is by adding Convolution. This works by changing the MipMap Bias of the Cubemap rendered in the reflection probe, effectively making it more blurry which softens the specular highlight. This dissolves the ultra bright pixels.
+
+![CaptureComponentSettings](/images/!CaptureComponentSettings.png)
 
 ## With Convolution Blur
 ![CaptureConvolutedProbe](/images/!CaptureConvolutedProbe.JPG)
