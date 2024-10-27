@@ -1,0 +1,17 @@
+{
+  "name": "com.coolkidstan.specular-probes-convolutionblur",
+  "description": "Specular highlights in baked reflection probes",
+  "version": "1.0.0",
+  "unity": "2021.3",
+  "displayName": "Specular Probes Convolution Blur",
+  "hideInEditor": false,
+  "dependencies": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StanLeeBOY/SpecularProbes-ConvolutionBlur"
+  },
+  "author": {
+    "name": "coolkidstan"
+  }
+}
